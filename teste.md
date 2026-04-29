@@ -16,25 +16,28 @@ USE ProtoTech_DB;
 > Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
 ```sql
-SELECT 
-    pr.nome as profissional,
-    c.nome_cargo,
-    CASE 
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 THEN '0-4 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 12 THEN '5-11 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 60 THEN '12-59 anos'
-        ELSE '60+ anos'
-    END as faixa_etaria,
-    COUNT(a.id_aplicacao) as total_doses,
-    RANK() OVER (PARTITION BY faixa_etaria ORDER BY COUNT(a.id_aplicacao) DESC) as ranking_profissional
-FROM Profissional pr
-INNER JOIN Cargo_Profissional c ON pr.id_cargo = c.id_cargo
-INNER JOIN Aplicacao_Vacina a ON pr.id_profissional = a.id_profissional
-INNER JOIN Paciente p ON a.id_paciente = p.id_paciente
-WHERE a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-GROUP BY pr.id_profissional, pr.nome, c.nome_cargo, faixa_etaria
-HAVING total_doses > 0
-ORDER BY faixa_etaria, ranking_profissional;
+CREATE TABLE categorias (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nome_categoria VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE fornecedores (
+    id_fornecedor INT PRIMARY KEY AUTO_INCREMENT,
+    nome_fornecedor VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(20) UNIQUE
+);
+
+CREATE TABLE localizacoes (
+    id_local INT PRIMARY KEY AUTO_INCREMENT,
+    setor VARCHAR(20) NOT NULL,
+    posicao VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email VARCHAR(100)
+);
 ```
 
 
