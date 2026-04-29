@@ -48,8 +48,7 @@ CREATE TABLE clientes (
 - `localizacoes` → organização física  
 - `clientes` → registro de compradores
 
-
-
+&nbsp;
 			       
 - **2.2 Tabelas Dependentes (com FOREIGN KEY)**
 
@@ -99,13 +98,14 @@ CREATE TABLE compras_estoque (
 
 **Relações entre tabelas:**
 
-- `produtos` → depende de **categorias** e **localizacoes**
+- `produtos` → depende de **categorias** e **localizações**
 - `vendas` → depende de **clientes**
 - `itens_venda` → depende de **vendas** e **produtos**
 - `compras_estoque` → depende de **fornecedores** e **produtos**
 
 
-## Q4. Comparativo Mensal por Faixa Etária (PIVOT com CTE).
+## 3. Lógica do Banco de Dados
+- **3.1 Trigger — Controle de Estoque
 
 ```sql
 WITH vacinacao_mensal AS (
