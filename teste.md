@@ -150,49 +150,46 @@ DELIMITER ;
 Dados utilizados para simular o funcionamento do sistema.
 Total aproximado: **110 registros**
 
+- 4.1 Categorias
+
 ```sql
-SELECT 
-    '0-4 anos' as faixa_etaria,
-    (SELECT COUNT(*) FROM Paciente WHERE TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) < 5) as total_pacientes,
-    (SELECT COUNT(DISTINCT id_paciente) FROM Aplicacao_Vacina a 
-     INNER JOIN Paciente p ON a.id_paciente = p.id_paciente 
-     WHERE TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 
-       AND a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) as vacinados_ano,
-    ROUND(
-        (SELECT COUNT(DISTINCT id_paciente) FROM Aplicacao_Vacina a 
-         INNER JOIN Paciente p ON a.id_paciente = p.id_paciente 
-         WHERE TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 
-           AND a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) * 100.0 /
-        NULLIF((SELECT COUNT(*) FROM Paciente WHERE TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) < 5), 0),
-        1
-    ) as cobertura_percent
+```
 
-UNION ALL
+- 4.2 Fornecedores
 
-SELECT 
-    '5-11 anos' as faixa_etaria,
-    (SELECT COUNT(*) FROM Paciente WHERE TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) BETWEEN 5 AND 11) as total_pacientes,
-    (SELECT COUNT(DISTINCT id_paciente) FROM Aplicacao_Vacina a 
-     INNER JOIN Paciente p ON a.id_paciente = p.id_paciente 
-     WHERE TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) BETWEEN 5 AND 11 
-       AND a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) as vacinados_ano,
-    ROUND(
-        (SELECT COUNT(DISTINCT id_paciente) FROM Aplicacao_Vacina a 
-         INNER JOIN Paciente p ON a.id_paciente = p.id_paciente 
-         WHERE TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) BETWEEN 5 AND 11 
-           AND a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) * 100.0 /
-        NULLIF((SELECT COUNT(*) FROM Paciente WHERE TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) BETWEEN 5 AND 11), 0),
-        1
-    ) as cobertura_percent;
+```sql
+```
+  
+- 4.3 Localizações
+
+```sql
+```
+  
+- 4.4 Clientes
+
+```sql
+```
+
+- 4.5 Produtos
+
+```sql
+```
+
+- 4.6 Vendas
+
+```sql
+```
+
+- 4.7 Itens de Venda
+
+```sql
+```
+
+- 4.8 Compras de Estoque
+```sql
 ```
 
 
-## Pontos Técnicos Avançados Usados
+## 5. Consultas SQL e Relatórios
 
-- **Múltiplos INNER JOINs** para relacionar 5+ tabelas sem perda de dados.
-- **CASE WHEN aninhado** para categorização dinâmica de faixas etárias.
-- **Funções de janela (RANK())** para ranking dentro de partições.
-- **Subconsultas correlacionadas** para cálculos de taxa de cobertura.
-- **CTE (WITH)** para organizar consultas complexas com PIVOT simulado.
-- **CROSS JOIN + LEFT JOIN** para matriz completa de cobertura.
-- **UNION ALL** para KPIs executivos em formato de tabela única.
+- **5.1 Consultas Básicas (Visualização)**
