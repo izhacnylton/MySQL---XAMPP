@@ -12,7 +12,7 @@ USE ProtoTech_DB;
 
 ## 2. Estrutura de Tabelas
 
-- **2.1 Tabelas Independentes (sem FOREIGN KEY)**
+- **2.1 Tabelas Independentes (sem `FOREIGN KEY`)**
 
     Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
@@ -50,7 +50,7 @@ CREATE TABLE clientes (
 
 &nbsp;
 			       
-- **2.2 Tabelas Dependentes (com FOREIGN KEY)**
+- **2.2 Tabelas Dependentes (com `FOREIGN KEY`)**
 
     Essas tabelas dependem das anteriores, pois possuem relacionamentos com chaves estrangeiras.
 
@@ -105,7 +105,7 @@ CREATE TABLE compras_estoque (
 
 
 ## 3. Lógica do Banco de Dados
-- **3.1 Trigger — Controle de Estoque**
+- **3.1 `TRIGGER` — Controle de Estoque**
 
 ```sql
 DELIMITER //
@@ -122,7 +122,7 @@ DELIMITER
 ```
 **Função:** Dispara um **alerta** quando o estoque do produto atinge o **mínimo**.
 
-- **3.2 Procedure — Finalização de Venda**
+- **3.2 `PROCEDURE` — Finalização de Venda**
 
 ```sql
 SELECT 
@@ -136,14 +136,7 @@ SELECT
     GROUP_CONCAT(DISTINCT p.nome ORDER BY p.nome SEPARATOR ', ') as nomes_pacientes
 FROM Paciente p
 CROSS JOIN Vacina v  -- Todas as combinações possíveis
-LEFT JOIN (
-    SELECT DISTINCT id_paciente, id_vacina 
-    FROM Aplicacao_Vacina a
-    INNER JOIN Lote_Vacina l ON a.id_lote = l.id_lote
-    WHERE a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
-) vacinados ON p.id_paciente = vacinados.id_paciente AND v.id_vacina = vacinados.id_vacina
-WHERE vacinados.id_paciente IS NULL
-    AND TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE())
+
 ```
 
 **Função:**
