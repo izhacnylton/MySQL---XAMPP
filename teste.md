@@ -150,42 +150,42 @@ DELIMITER ;
 Dados utilizados para simular o funcionamento do sistema.
 Total aproximado: **110 registros**
 
-- 4.1 Categorias
+- **4.1 Categorias**
 
 ```sql
 ```
 
-- 4.2 Fornecedores
-
-```sql
-```
-  
-- 4.3 Localizações
+- **4.2 Fornecedores**
 
 ```sql
 ```
   
-- 4.4 Clientes
+- **4.3 Localizações**
+
+```sql
+```
+  
+- **4.4 Clientes**
 
 ```sql
 ```
 
-- 4.5 Produtos
+- **4.5 Produtos**
 
 ```sql
 ```
 
-- 4.6 Vendas
+- **4.6 Vendas**
 
 ```sql
 ```
 
-- 4.7 Itens de Venda
+- **4.7 Itens de Venda**
 
 ```sql
 ```
 
-- 4.8 Compras de Estoque
+- **4.8 Compras de Estoque**
 ```sql
 ```
 
@@ -193,3 +193,5 @@ Total aproximado: **110 registros**
 ## 5. Consultas SQL e Relatórios
 
 - **5.1 Consultas Básicas (Visualização)**
+
+- **5.2 Relatórios Estratégicos**
