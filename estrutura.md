@@ -1,3 +1,11 @@
+> **Aqui vai:**
+
+- criação do banco
+- tabelas (independente/dependente)
+- trigger
+- procedure
+- técnicas usadas
+
 # ProtoTech_DB — Sistema de Controle de Estoque e Vendas
 
 Banco de dados desenvolvido para gerenciar **produtos**, **vendas**, **estoque** e **fornecedores** de uma loja de componentes eletrônicos.
