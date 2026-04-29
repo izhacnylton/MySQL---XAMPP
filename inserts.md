@@ -4,7 +4,7 @@
 ## 4. Inserção de Dados (INSERT)
 
 Dados utilizados para simular o funcionamento do sistema.
-Total aproximado: **110 registros**
+Total aproximado: **200 registros**
 
 - **4.1 Categorias**
 
