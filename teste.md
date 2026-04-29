@@ -1,8 +1,8 @@
-# Consultas SQL avançadas com JOIN para relatórios por faixa etária
+# ProtoTech_DB — Sistema de Controle de Estoque e Vendas
 
-Aqui estão **consultas SQL avançadas com múltiplos JOINs** para relatórios por **faixa etária** no sistema de vacinação. Elas usam `CASE WHEN` para categorizar idades, `GROUP BY` para agregação e funções de janela para ranking, seguindo técnicas de relatórios complexos.
+Banco de dados desenvolvido para gerenciar **produtos**, **vendas**, **estoque** e **fornecedores** de uma loja de componentes eletrônicos.
 
-## Q1. Cobertura Vacinal por Faixa Etária e Sexo (Múltiplos JOINs).
+## 1. Criação do Banco de Dados
 
 ```sql
 SELECT 
