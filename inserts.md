@@ -1,6 +1,3 @@
-## Ola imundo
-
-
 ## 4. Inserção de Dados (INSERT)
 
 Dados utilizados para simular o funcionamento do sistema.
