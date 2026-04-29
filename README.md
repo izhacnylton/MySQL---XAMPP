@@ -1,4 +1,4 @@
-> **na *Capa* vou colocar:**
+> **na *capa* vou colocar:**
 > - descrição do sistema
 > - objetivo
 > - resumo do banco
