@@ -5,41 +5,15 @@ Banco de dados desenvolvido para gerenciar **produtos**, **vendas**, **estoque**
 ## 1. Criação do Banco de Dados
 
 ```sql
-SELECT 
-    CASE 
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 1 THEN '0-11 meses'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 2 THEN '1 ano'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 THEN '2-4 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 12 THEN '5-11 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 18 THEN '12-17 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 60 THEN '18-59 anos'
-        ELSE '60+ anos'
-    END as faixa_etaria,
-    p.sexo,
-    COUNT(DISTINCT p.id_paciente) as pacientes_vacinados,
-    COUNT(a.id_aplicacao) as total_doses,
-    ROUND((COUNT(a.id_aplicacao) / COUNT(DISTINCT p.id_paciente)), 1) as doses_por_paciente
-FROM Paciente p
-INNER JOIN Aplicacao_Vacina a ON p.id_paciente = a.id_paciente
-INNER JOIN Profissional pr ON a.id_profissional = pr.id_profissional
-INNER JOIN Lote_Vacina l ON a.id_lote = l.id_lote
-INNER JOIN Vacina v ON l.id_vacina = v.id_vacina
-WHERE a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
-GROUP BY faixa_etaria, p.sexo
-ORDER BY 
-    CASE faixa_etaria
-        WHEN '0-11 meses' THEN 1
-        WHEN '1 ano' THEN 2
-        WHEN '2-4 anos' THEN 3
-        WHEN '5-11 anos' THEN 4
-        WHEN '12-17 anos' THEN 5
-        WHEN '18-59 anos' THEN 6
-        ELSE 7
-    END, p.sexo;
+CREATE DATABASE IF NOT EXISTS ProtoTech_DB;
+USE ProtoTech_DB;
 ```
 
 
-## Q2. Ranking de Profissionais por Faixa Etária (Função de Janela).
+## 2. Estrutura de Tabelas
+
+- ** 2.1 Tabelas Independentes (sem FOREIGN KEY)
+> Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
 ```sql
 SELECT 
