@@ -12,8 +12,8 @@ USE ProtoTech_DB;
 
 ## 2. Estrutura de Tabelas
 
-- **2.1** Tabelas Independentes (sem FOREIGN KEY)
-> Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
+- **2.1 Tabelas Independentes (sem FOREIGN KEY)**
+   Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
 ```sql
 CREATE TABLE categorias (
