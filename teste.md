@@ -13,7 +13,7 @@ USE ProtoTech_DB;
 ## 2. Estrutura de Tabelas
 
 - **2.1 Tabelas Independentes (sem FOREIGN KEY)**
-   Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
+    Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
 ```sql
 CREATE TABLE categorias (
@@ -40,43 +40,49 @@ CREATE TABLE clientes (
 );
 ```
 
-
-## Q3. Taxa de Cobertura por Vacina e Faixa Etária (Subconsulta).
+- **2.2 Tabelas Dependentes (com FOREIGN KEY)**
+    Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
 
 ```sql
-SELECT 
-    v.nome_vacina,
-    CASE 
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 THEN 'Crianças (0-4)'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 12 THEN 'Crianças (5-11)'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 60 THEN 'Adultos (12-59)'
-        ELSE 'Idosos (60+)'
-    END as faixa_etaria,
-    COUNT(a.id_aplicacao) as doses_aplicadas,
-    COUNT(DISTINCT p.id_paciente) as pacientes_vacinados,
-    ROUND(
-        (COUNT(a.id_aplicacao) * 100.0 / 
-         (SELECT COUNT(*) FROM Paciente p2 
-          WHERE TIMESTAMPDIFF(YEAR, p2.data_nascimento, CURDATE()) 
-                BETWEEN 
-                CASE faixa_etaria 
-                    WHEN 'Crianças (0-4)' THEN 0 WHEN 'Crianças (5-11)' THEN 5 
-                    WHEN 'Adultos (12-59)' THEN 12 ELSE 60 
-                END 
-                AND 
-                CASE faixa_etaria 
-                    WHEN 'Crianças (0-4)' THEN 4 WHEN 'Crianças (5-11)' THEN 11 
-                    WHEN 'Adultos (12-59)' THEN 59 ELSE 999 
-                END)
-        ), 2
-    ) as taxa_cobertura_percent
-FROM Aplicacao_Vacina a
-INNER JOIN Paciente p ON a.id_paciente = p.id_paciente
-INNER JOIN Lote_Vacina l ON a.id_lote = l.id_lote
-INNER JOIN Vacina v ON l.id_vacina = v.id_vacina
-WHERE a.data_aplicacao >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
-GROUP BY v.id_vacina, v.nome_vacina, faixa_etaria
-ORDER BY v.nome_vacina, faixa_etaria;
+CREATE TABLE produtos (
+    id_produto INT PRIMARY KEY AUTO_INCREMENT,
+    nome_produto VARCHAR(100) NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    estoque_atual INT DEFAULT 0,
+    estoque_min INT DEFAULT 5,
+    id_categoria INT,
+    id_local INT,
+    CONSTRAINT fk_cat FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria),
+    CONSTRAINT fk_pro FOREIGN KEY (id_local) REFERENCES localizacoes(id_local)
+);
+
+CREATE TABLE vendas (
+    id_venda INT PRIMARY KEY AUTO_INCREMENT,
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    valor_total DECIMAL(10, 2) DEFAULT 0.00,
+    id_cliente INT,
+    CONSTRAINT fk_cli FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+
+CREATE TABLE itens_venda (
+    id_item_venda INT PRIMARY KEY AUTO_INCREMENT,
+    quantidade INT NOT NULL,
+    preco_venda_momento DECIMAL(10, 2),
+    id_venda INT,
+    id_produto INT,
+    CONSTRAINT fk_ven FOREIGN KEY (id_venda) REFERENCES vendas(id_venda),
+    CONSTRAINT fk_item_pro FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+
+CREATE TABLE compras_estoque (
+    id_compra INT PRIMARY KEY AUTO_INCREMENT,
+    quantidade_entrada INT NOT NULL,
+    data_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	id_fornecedor INT,
+    id_produto INT,
+    CONSTRAINT fk_for FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor),
+    CONSTRAINT fk_pro_compra FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
 ```
 
 
