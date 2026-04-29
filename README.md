@@ -1,9 +1,3 @@
-> **na *"capa"* vou colocar:**
-> - descrição do sistema
-> - objetivo talvez
-> - resumo do banco talvez
-> - links pros outros arquivos
-
 ## ProtoTech_DB
 
 Sistema de controle de estoque e vendas de componentes eletrônicos.
