@@ -50,7 +50,7 @@ CREATE TABLE clientes (
 
 
 
-
+			       
 - **2.2 Tabelas Dependentes (com FOREIGN KEY)**
 
     Essas tabelas dependem das anteriores, pois possuem relacionamentos com chaves estrangeiras.
