@@ -43,7 +43,7 @@ CREATE TABLE clientes (
 
 - **2.2 Tabelas Dependentes (com FOREIGN KEY)**
 
-    Essas tabelas são criadas primeiro porque não dependem de nenhuma outra.
+    Essas tabelas dependem das anteriores, pois possuem relacionamentos com chaves estrangeiras.
 
 ```sql
 CREATE TABLE produtos (
