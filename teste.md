@@ -312,4 +312,15 @@ INSERT INTO compras_estoque (quantidade_entrada, id_fornecedor, id_produto) VALU
 
 - **5.1 Consultas Básicas (Visualização)**
 
+```sql
+select*from categorias;
+select*from clientes;
+select*from fornecedores;
+select*from compras_estoque;
+select*from itens_venda;
+select*from localizacoes;
+select*from produtos;
+select*from vendas;
+```
+
 - **5.2 Relatórios Estratégicos**
