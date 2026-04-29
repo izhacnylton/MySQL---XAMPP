@@ -153,21 +153,44 @@ Total aproximado: **110 registros**
 - **4.1 Categorias**
 
 ```sql
+INSERT INTO categorias (nome_categoria) VALUES 
+('Microcontroladores'), ('Sensores de Presença'), ('Sensores de Ambiente'), 
+('Displays e Visores'), ('Atuadores/Motores'), ('Comunicação Wireless'), 
+('Protoboards e Jumpers'), ('Fontes e Energia'), ('Módulos de Relevo'), ('Ferramentas');
 ```
 
 - **4.2 Fornecedores**
 
 ```sql
+INSERT INTO fornecedores (nome_fornecedor, cnpj) VALUES 
+('Global Tech', '10.001.001/0001-01'), ('Ponte Norte', '20.002.002/0002-02'),
+('Silicon Import', '30.003.003/0003-03'), ('Brasil Maker', '40.004.004/0004-04'),
+('Eletrônica Amazonas', '50.005.005/0005-05'), ('Importadora Tech', '60.006.006/0006-06'),
+('Eletro Suprimentos', '70.007.007/0007-07'), ('Conexão Digital', '80.008.008/0008-08'),
+('Mundo dos Chips', '90.009.009/0009-09'), ('Logística Pro', '11.111.111/0001-11');
 ```
   
 - **4.3 Localizações**
 
 ```sql
+INSERT INTO localizacoes (setor, posicao) VALUES 
+('A', 'Gaveta 01'), ('A', 'Gaveta 02'), ('B', 'Prateleira 10'), ('B', 'Prateleira 11'),
+('C', 'Armário 01'), ('C', 'Armário 02'), ('D', 'Bancada Sul'), ('D', 'Bancada Norte'),
+('E', 'Estoque Frio'), ('F', 'Geral');
 ```
   
 - **4.4 Clientes**
 
 ```sql
+INSERT INTO clientes (nome_cliente, email) VALUES 
+('Victor Silva', 'victor@email.com'), ('Ana Souza', 'ana@email.com'), 
+('Carlos Lima', 'carlos@email.com'), ('Mariana Dias', 'mari@email.com'),
+('Roberto Jr', 'roberto@email.com'), ('Fernanda Poe', 'fernanda@email.com'),
+('Laboratório X', 'labx@edu.com'), ('Robótica Manaus', 'contato@robotica.com'),
+('Escola Tech', 'direcao@tech.com'), ('João Pedro', 'jp@email.com'),
+('Beatriz Ramos', 'bea@email.com'), ('Marcos Vaz', 'vaz@email.com'),
+('Studio Maker', 'studio@maker.com'), ('Engenharia S/A', 'eng@empresa.com'),
+('Alice Mendes', 'alice@email.com');
 ```
 
 - **4.5 Produtos**
