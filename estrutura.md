@@ -153,6 +153,21 @@ DELIMITER ;
 - Registra o item na venda.
 - Atualiza automaticamente o estoque.
 
-
-
 - **5.2 Relatórios Estratégicos**
+
+## Técnicas Utilizadas
+- **CREATE DATABASE / CREATE TABLE** → criação da estrutura do banco de dados
+- **PRIMARY KEY** → identifica cada registro de forma única
+- **AUTO_INCREMENT** → gera IDs automaticamente
+- **FOREIGN KEY** → garante o relacionamento entre tabelas (integridade referencial)
+- **INSERT INTO** → inserção de dados no banco
+- **SELECT** → consulta de dados
+- **JOIN (INNER JOIN)** → combina dados de várias tabelas nos relatórios
+- **GROUP BY** → agrupa dados para análise (ex: faturamento por categoria)
+- **ORDER BY** → organiza os resultados das consultas
+- **FUNÇÕES DE AGREGAÇÃO (SUM, COUNT)** → cálculos de totais e quantidades
+- **EXPRESSÕES MATEMÁTICAS** → cálculo de valor em estoque (`estoque * preço`)
+- **TRIGGER** → executa ações automáticas ao atualizar o estoque
+- **PROCEDURE (Stored Procedure)** → automatiza o processo de registro de vendas
+- **DELIMITER** → permite criação de blocos de código para trigger e procedure
+
