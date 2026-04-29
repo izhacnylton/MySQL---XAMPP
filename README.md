@@ -5,3 +5,7 @@
 > - links pros outros arquivos
 
 ## ola imundos 3.0
+
+- [Estrutura do Banco](estrutura.md)
+- [Inserts do Banco](inserts.md)
+- [Consultas do Banco](consultas.md)
