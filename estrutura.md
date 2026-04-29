@@ -138,7 +138,7 @@ CREATE PROCEDURE sp_finalizar_venda(IN p_id_venda INT, IN p_id_produto INT, IN p
 BEGIN
     -- 1. Insere o item na venda
     INSERT INTO itens_venda (id_venda, id_produto, quantidade, preco_venda_momento)
-    SELECT p_id_venda, p_id_produto, p_qtd, preco_unit FROM produtos WHERE id_produto = p_id_produto;
+    SELECT p_id_venda, p_id_produto, p_qtd, preco_unitario FROM produtos WHERE id_produto = p_id_produto;
 
     -- 2. Atualiza o saldo físico do estoque
     UPDATE produtos 
