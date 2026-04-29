@@ -49,6 +49,8 @@ CREATE TABLE clientes (
 - `clientes` → registro de compradores
 
 
+
+
 - **2.2 Tabelas Dependentes (com FOREIGN KEY)**
 
     Essas tabelas dependem das anteriores, pois possuem relacionamentos com chaves estrangeiras.
