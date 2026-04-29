@@ -41,6 +41,14 @@ CREATE TABLE clientes (
 );
 ```
 
+**Função das tabelas:**
+
+- `categorias` → classifica produtos  
+- `fornecedores` → origem dos produtos  
+- `localizacoes` → organização física  
+- `clientes` → registro de compradores
+
+
 - **2.2 Tabelas Dependentes (com FOREIGN KEY)**
 
     Essas tabelas dependem das anteriores, pois possuem relacionamentos com chaves estrangeiras.
@@ -86,6 +94,13 @@ CREATE TABLE compras_estoque (
     CONSTRAINT fk_pro_compra FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
 );
 ```
+
+**Relações entre tabelas:**
+
+- `produtos` → depende de **categorias** e **localizacoes**
+- `vendas` → depende de **clientes**
+- `itens_venda` → depende de **vendas** e **produtos**
+- `compras_estoque` → depende de **fornecedores** e **produtos**
 
 
 ## Q4. Comparativo Mensal por Faixa Etária (PIVOT com CTE).
