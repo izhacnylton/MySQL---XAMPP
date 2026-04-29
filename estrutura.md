@@ -145,8 +145,6 @@ DELIMITER ;
 - Registra o item na venda.
 - Atualiza automaticamente o estoque.
 
-- **5.2 Relatórios Estratégicos**
-
 ## Técnicas Utilizadas
 - **CREATE DATABASE / CREATE TABLE** → criação da estrutura do banco de dados
 - **PRIMARY KEY** → identifica cada registro de forma única
