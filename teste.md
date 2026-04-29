@@ -125,17 +125,19 @@ DELIMITER
 - **3.2 `PROCEDURE` — Finalização de Venda**
 
 ```sql
-SELECT 
-    CASE 
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 5 THEN '0-4 anos'
-        WHEN TIMESTAMPDIFF(YEAR, p.data_nascimento, CURDATE()) < 12 THEN '5-11 anos'
-        ELSE '12+ anos'
-    END as faixa_etaria,
-    v.nome_vacina,
-    COUNT(*) as pacientes_pendentes,
-    GROUP_CONCAT(DISTINCT p.nome ORDER BY p.nome SEPARATOR ', ') as nomes_pacientes
-FROM Paciente p
-CROSS JOIN Vacina v  -- Todas as combinações possíveis
+DELIMITER //
+CREATE PROCEDURE sp_finalizar_venda(IN p_id_venda INT, IN p_id_produto INT, IN p_qtd INT)
+BEGIN
+    -- 1. Insere o item na venda
+    INSERT INTO itens_venda (id_venda, id_produto, quantidade, preco_venda_momento)
+    SELECT p_id_venda, p_id_produto, p_qtd, preco_unit FROM produtos WHERE id_produto = p_id_produto;
+
+    -- 2. Atualiza o saldo físico do estoque
+    UPDATE produtos 
+    SET estoque_atual = estoque_atual - p_qtd 
+    WHERE id_produto = p_id_produto;
+END //
+DELIMITER ;
 
 ```
 
