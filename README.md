@@ -14,12 +14,14 @@ CREATE DATABASE IF NOT EXISTS ProtoTech_DB;
 USE ProtoTech_DB;
 </details>
 🏗️ Tabelas
-<details> <summary>Ver tabelas</summary>
+<details>
+<summary>Ver tabelas</summary>
 CREATE TABLE categorias (
     id_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nome_categoria VARCHAR(50) NOT NULL
 🏗️ Tabelas
-<details> <summary>Ver tabelas</summary>
+<details>
+<summary>Ver tabelas</summary>
 CREATE TABLE categorias (
     id_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nome_categoria VARCHAR(50) NOT NULL
@@ -32,14 +34,16 @@ CREATE TABLE produtos (
 );
 </details>
 ⚙️ Procedure
-<details> <summary>Ver procedure</summary>
+<details>
+<summary>Ver procedure</summary>
 CREATE PROCEDURE exemplo()
 BEGIN
     SELECT * FROM produtos;
 END;
 </details>
 🔍 Consultas
-<details> <summary>Ver SELECT</summary>
+<details>
+<summary>Ver SELECT</summary>
 SELECT * FROM produtos;
 </details>
 ````
