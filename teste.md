@@ -143,7 +143,10 @@ CROSS JOIN Vacina v  -- Todas as combinações possíveis
 - Registra o item na venda.
 - Atualiza automaticamente o estoque.
 
-## Q6. Dashboard Executivo - KPIs por Faixa Etária (Subconsultas Aninhadas).
+## 4. Inserção de Dados (INSERT)
+
+Dados utilizados para simular o funcionamento do sistema.
+Total aproximado: **110 registros**
 
 ```sql
 SELECT 
