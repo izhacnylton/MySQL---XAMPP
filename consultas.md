@@ -18,3 +18,4 @@ select*from produtos;
 select*from vendas;
 ```
 
+- **5.2 Relatórios Estratégicos**
